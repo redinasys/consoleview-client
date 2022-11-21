@@ -13,21 +13,21 @@ import PersonIcon from "@mui/icons-material/Person";
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
-export const mainListItems = (
-  <React.Fragment>
-    <ListItemButton>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <Link
-        to="/dashboard"
-        style={{ textDecoration: "none", color: "inherit" }}
-      >
-        <ListItemText primary="Dashboard" />
-      </Link>
-    </ListItemButton>
-  </React.Fragment>
-);
+// export const mainListItems = (
+//   <React.Fragment>
+//     <ListItemButton>
+//       <ListItemIcon>
+//         <DashboardIcon />
+//       </ListItemIcon>
+//       <Link
+//         to="/dashboard"
+//         style={{ textDecoration: "none", color: "inherit" }}
+//       >
+//         <ListItemText primary="Dashboard" />
+//       </Link>
+//     </ListItemButton>
+//   </React.Fragment>
+// );
 
 export const secondaryListItems = (
   <React.Fragment>
