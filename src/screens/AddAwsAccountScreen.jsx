@@ -15,7 +15,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import {
-  mainListItems,
   secondaryListItems,
 } from "../components/Dashboard/ListItems";
 import Copyright from "../components/Dashboard/Copyright";
@@ -161,7 +160,7 @@ function AddAwsAccountContent() {
           </Toolbar>
           <Divider />
           <List component="nav">
-            {mainListItems}
+            {/* {mainListItems} */}
             <Divider sx={{ my: 1 }} />
             {secondaryListItems}
           </List>

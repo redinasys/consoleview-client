@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import JsonFormatter from "react-json-formatter";
 import { Grid } from "@mui/material";
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 const style = {
   position: "absolute",
@@ -50,7 +51,7 @@ export default function FullJson(props) {
               <Button
                 onClick={() => navigator.clipboard.writeText(props.fullJson)}
               >
-                Copy to Clipboard
+                Copy &nbsp; <ContentCopyIcon />
               </Button>
             </Grid>
           </Grid>

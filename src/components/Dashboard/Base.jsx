@@ -12,7 +12,7 @@ import Badge from "@mui/material/Badge";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import { mainListItems, secondaryListItems } from "./ListItems";
+import { secondaryListItems } from "./ListItems";
 
 const drawerWidth = 400;
 
@@ -118,7 +118,7 @@ function BaseContent() {
         </Toolbar>
         <Divider />
         <List component="nav">
-          {mainListItems}
+          {/* {mainListItems} */}
           <Divider sx={{ my: 1 }} />
           {secondaryListItems}
         </List>

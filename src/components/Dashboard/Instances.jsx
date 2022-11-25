@@ -38,28 +38,39 @@ export default function Instances() {
       <Table size="small">
         <TableHead>
           <TableRow>
+            <TableCell></TableCell>
             <TableCell style={{ fontWeight: "bold" }}>ID</TableCell>
             <TableCell style={{ fontWeight: "bold" }}>Type</TableCell>
             <TableCell style={{ fontWeight: "bold" }}>State</TableCell>
             <TableCell style={{ fontWeight: "bold" }}>Launch Time</TableCell>
-            <TableCell style={{ fontWeight: "bold" }}>Region</TableCell>
+            <TableCell style={{ fontWeight: "bold" }}>Platform</TableCell>
+            {/* <TableCell style={{ fontWeight: "bold" }}>Region</TableCell> */}
             <TableCell style={{ fontWeight: "bold" }}>Account Name</TableCell>
             <TableCell style={{ fontWeight: "bold" }}>Action</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {instances.map((row) => (
-            <TableRow key={row.InstanceId}>
-              <TableCell>{row.InstanceId}</TableCell>
-              <TableCell>{row.InstanceType}</TableCell>
-              <TableCell>{row.State}</TableCell>
-              <TableCell>{row.LaunchTime}</TableCell>
-              <TableCell>{row.region}</TableCell>
-              <TableCell>{row.account_name}</TableCell>
-              <TableCell>
-                <FullJson fullJson={JSON.stringify(row.FullJson)} />
-              </TableCell>
-            </TableRow>
+          {instances.map((row, i) => (
+            <>
+              <h3>{row.region}</h3>
+              {row.instances.map((instance, j) => (
+                <TableRow key={j}>
+                  <TableCell></TableCell>
+                  <TableCell>
+                    {instance.Instances[0].InstanceId}
+                  </TableCell>
+                  <TableCell>{instance.Instances[0].InstanceType}</TableCell>
+                  <TableCell>{instance.Instances[0].State.Name}</TableCell>
+                  <TableCell>{instance.Instances[0].LaunchTime}</TableCell>
+                  <TableCell>{instance.Instances[0].PlatformDetails}</TableCell>
+                  {/* <TableCell>Hey!!</TableCell> */}
+                  <TableCell>{row.account_name}</TableCell>
+                  <TableCell>
+                  <FullJson fullJson={JSON.stringify(instance)} />
+                </TableCell>
+                </TableRow>
+              ))}
+            </>
           ))}
         </TableBody>
       </Table>

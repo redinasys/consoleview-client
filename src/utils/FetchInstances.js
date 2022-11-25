@@ -17,7 +17,7 @@ export const FetchInstances = async (roleArns, accountNames) => {
       },
     }
   );
-  const data = await response.data.response.AllInstances;
+  const data = await response.data.regionWiseInstances;
 
   return data;
 };

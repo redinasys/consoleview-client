@@ -16,7 +16,7 @@ import Paper from '@mui/material/Paper';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems, secondaryListItems } from '../components/Dashboard/ListItems';
+import { secondaryListItems } from '../components/Dashboard/ListItems';
 import Instances from '../components/Dashboard/Instances';
 import Copyright from '../components/Dashboard/Copyright';
 
@@ -127,7 +127,7 @@ function InstanceContent() {
           </Toolbar>
           <Divider />
           <List component="nav">
-            {mainListItems}
+            {/* {mainListItems} */}
             <Divider sx={{ my: 1 }} />
             {secondaryListItems}
           </List>
