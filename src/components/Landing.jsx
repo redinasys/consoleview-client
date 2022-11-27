@@ -6,15 +6,21 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link } from "react-router-dom";
-
 import Navbar from "./Navbar";
+import Logo from "../assets/logo.png";
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#ba5937',
+    }
+  },
+});
 
 export default function Landing() {
   return (
     <ThemeProvider theme={theme}>
-      <Navbar />
+      {/* <Navbar /> */}
       <CssBaseline />
       <main>
         <Container
@@ -29,16 +35,10 @@ export default function Landing() {
             bgcolor: "background.paper",
           }}
         >
-          <Typography
-            component="h1"
-            variant="h2"
-            align="center"
-            color="text.primary"
-            gutterBottom
-          >
-            ConsoleView
-          </Typography>
-          <Typography align="center" color="text.secondary" paragraph>
+          <Container>
+            <img src={Logo} alt="logo" width="500" />
+          </Container>
+          <Typography style={{marginTop: "-80px"}} align="center" color="text.secondary" paragraph>
             The ConsoleView platform delivers one dashboard for multiple AWS
             accounts to view all your AWS Resources Inventory i.e. EC2
             instances, VPC, S3 Buckets, Billing and many more. ConsoleView is

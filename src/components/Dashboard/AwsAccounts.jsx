@@ -10,15 +10,18 @@ import { useState, useEffect } from "react";
 import { FetchAwsAccounts } from "../../utils/FetchAwsAccounts";
 import { AxiosInstance } from "../../utils/AxiosInstance";
 import { useNavigate } from "react-router-dom";
+import { LinearProgress } from "@mui/material";
 
 export default function Instances() {
   const [awsAccounts, setAwsAccounts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     try {
       const getAwsAccounts = async () => {
         const response = await FetchAwsAccounts();
+        setIsLoading(false);
         setAwsAccounts(response);
         // console.log(response);
       };
@@ -55,41 +58,45 @@ export default function Instances() {
   return (
     <React.Fragment>
       <Title>Manage Accounts</Title>
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell style={{ fontWeight: "bold" }}>Name</TableCell>
-            <TableCell style={{ fontWeight: "bold" }}>Description</TableCell>
-            <TableCell style={{ fontWeight: "bold" }}>Role ARN</TableCell>
-            <TableCell style={{ fontWeight: "bold" }}>Actions</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {awsAccounts.map((row) => (
-            <TableRow key={row._id}>
-              <TableCell>{row.account_name}</TableCell>
-              <TableCell>{row.description}</TableCell>
-              <TableCell>{row.role_arn}</TableCell>
-              <TableCell>
-                <Link
-                  color="primary"
-                  onClick={() => navigate(`/aws-accounts/${row._id}`)}
-                  style={{ cursor: "pointer" }}
-                >
-                  Edit
-                </Link>
-                <Link
-                  onClick={() => handleDelete(row._id)}
-                  color="primary"
-                  style={{ marginLeft: 10, cursor: "pointer" }}
-                >
-                  Delete
-                </Link>
-              </TableCell>
+      {isLoading ? (
+        <LinearProgress />
+      ) : (
+        <Table size="small">
+          <TableHead>
+            <TableRow>
+              <TableCell style={{ fontWeight: "bold" }}>Name</TableCell>
+              <TableCell style={{ fontWeight: "bold" }}>Description</TableCell>
+              <TableCell style={{ fontWeight: "bold" }}>Role ARN</TableCell>
+              <TableCell style={{ fontWeight: "bold" }}>Actions</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHead>
+          <TableBody>
+            {awsAccounts.map((row) => (
+              <TableRow key={row._id}>
+                <TableCell>{row.account_name}</TableCell>
+                <TableCell>{row.description}</TableCell>
+                <TableCell>{row.role_arn}</TableCell>
+                <TableCell>
+                  <Link
+                    color="primary"
+                    onClick={() => navigate(`/aws-accounts/${row._id}`)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    Edit
+                  </Link>
+                  <Link
+                    onClick={() => handleDelete(row._id)}
+                    color="primary"
+                    style={{ marginLeft: 10, cursor: "pointer" }}
+                  >
+                    Delete
+                  </Link>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      )}
     </React.Fragment>
   );
 }

@@ -13,6 +13,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { secondaryListItems } from "./ListItems";
+import Logo from "../assets/logo.png";
 
 const drawerWidth = 400;
 
@@ -69,7 +70,8 @@ function BaseContent() {
   return (
     <>
       <CssBaseline />
-      <AppBar position="absolute" open={open}>
+      <AppBar position="absolute" open={open} >
+      <img src={Logo} alt="logo" width="500" />
         <Toolbar
           sx={{
             pr: "24px", // keep right padding when drawer closed
@@ -111,6 +113,7 @@ function BaseContent() {
             justifyContent: "flex-end",
             px: [1],
           }}
+          style={{ backgroundColor: "#ba5937" }}
         >
           <IconButton onClick={toggleDrawer}>
             <ChevronLeftIcon />

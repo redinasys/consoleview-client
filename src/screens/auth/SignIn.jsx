@@ -15,11 +15,19 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate, Link } from "react-router-dom";
 
 import Navbar from "../../components/Navbar";
+import Logo from "../../assets/logo.png";
 
 import UserPool from "../../utils/UserPool";
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
+import { Container } from "@mui/material";
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#ba5937',
+    }
+  },
+});
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -69,7 +77,7 @@ const SignIn = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Navbar />
+      {/* <Navbar /> */}
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
         <Grid
@@ -79,7 +87,7 @@ const SignIn = () => {
           md={7}
           sx={{
             backgroundImage:
-              "url(https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80)",
+              "url(https://images.pexels.com/photos/1546912/pexels-photo-1546912.jpeg?auto=compress&cs=tinysrgb&w=800)",
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
@@ -99,9 +107,15 @@ const SignIn = () => {
               alignItems: "center",
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "secondary" }}>
-              <LockOutlinedIcon />
-            </Avatar>
+            <Container style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              marginLeft: "-10px",
+            }}>
+              <img src={Logo} alt="logo" width="200" />
+            </Container>
             <Typography component="h1" variant="h5">
               Sign In
             </Typography>{" "}
@@ -148,7 +162,7 @@ const SignIn = () => {
                 Sign In
               </Button>
 
-              <Link to="/signup" variant="body2">
+              <Link to="/signup" variant="body2" style={{color: "#ba5937"}}>
                 {"Don't have an account? Sign Up"}
               </Link>
             </Box>

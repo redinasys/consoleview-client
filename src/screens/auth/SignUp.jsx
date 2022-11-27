@@ -19,7 +19,16 @@ import Navbar from "../../components/Navbar";
 import { CognitoUserAttribute } from "amazon-cognito-identity-js";
 import UserPool from "../../utils/UserPool";
 
-const theme = createTheme();
+import Logo from "../../assets/logo.png";
+import { Container } from "@mui/system";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#ba5937",
+    },
+  },
+});
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -28,8 +37,7 @@ const SignUp = () => {
   const [company, setCompany] = useState("");
   const [country, setCountry] = useState("");
   const [designation, setDesignation] = useState("");
-  const [errors, setErrors] = useState([]);
-
+  const [errors, setErrors] = useState("");
 
   const navigate = useNavigate();
 
@@ -59,12 +67,12 @@ const SignUp = () => {
       attributeList.push(dataDesignation);
       UserPool.signUp(email, password, attributeList, null, (err, data) => {
         if (err) {
-          console.log(err);
+          setErrors(err.message);
+          console.log(errors);
         } else {
           console.log(data);
         }
       });
-      navigate("/signin");
     } catch (error) {
       console.log(error);
       setErrors([error.response.data]);
@@ -73,7 +81,7 @@ const SignUp = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Navbar />
+      {/* <Navbar /> */}
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
         <Grid
@@ -83,7 +91,7 @@ const SignUp = () => {
           md={7}
           sx={{
             backgroundImage:
-              "url(https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80)",
+              "url(https://images.pexels.com/photos/1546912/pexels-photo-1546912.jpeg?auto=compress&cs=tinysrgb&w=800)",
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
@@ -103,10 +111,22 @@ const SignUp = () => {
               alignItems: "center",
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "secondary" }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
+            <Container
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                marginLeft: "-10px",
+              }}
+            >
+              <img src={Logo} alt="logo" width="200" />
+            </Container>
+            <Typography
+              component="h1"
+              variant="h5"
+              style={{ marginTop: "-25px" }}
+            >
               Sign Up
             </Typography>
             <Box
@@ -207,6 +227,11 @@ const SignUp = () => {
                 // error={errors[0] !== undefined ? errors[0].name : ""}
                 // helperText={errors[0] !== undefined ? errors[0].name : ""}
               />
+              {errors !== "" ? (
+                <Typography color="error" variant="body2">
+                  {errors}
+                </Typography>
+              ) : null}
               <Button
                 type="submit"
                 fullWidth
@@ -216,7 +241,7 @@ const SignUp = () => {
                 Sign Up
               </Button>
 
-              <Link to="/signin" variant="body2">
+              <Link to="/signin" variant="body2" style={{ color: "#ba5937" }}>
                 {"Already have an account? Sign In"}
               </Link>
             </Box>

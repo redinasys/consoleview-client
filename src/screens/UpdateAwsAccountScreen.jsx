@@ -23,6 +23,7 @@ import { useState } from "react";
 import { AxiosInstance } from "../utils/AxiosInstance";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import Logo from "../assets/logo.png";
 
 const drawerWidth = 240;
 
@@ -70,7 +71,13 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
-const mdTheme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#ba5937',
+    }
+  },
+});
 
 function UpdateAwsAccountContent() {
   const [open, setOpen] = React.useState(true);
@@ -130,7 +137,7 @@ function UpdateAwsAccountContent() {
   }, [id]);
 
   return (
-    <ThemeProvider theme={mdTheme}>
+    <ThemeProvider theme={theme}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <AppBar position="absolute" open={open}>
@@ -160,11 +167,13 @@ function UpdateAwsAccountContent() {
             >
               Update Account
             </Typography>
-            <IconButton color="inherit">
+            {/*
+<IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
+*/}
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -176,11 +185,14 @@ function UpdateAwsAccountContent() {
               px: [1],
             }}
           >
-            <IconButton onClick={toggleDrawer}>
-              <ChevronLeftIcon />
-            </IconButton>
+            {/* <IconButton onClick={toggleDrawer}>
+      <ChevronLeftIcon />
+</IconButton> */}
           </Toolbar>
-          <Divider />
+          <Container>
+            <img src={Logo} alt="logo" style={{ width: '100%', marginBottom: "-52px", marginTop: "-50px" }} />
+          </Container>
+          {/* <Divider /> */}
           <List component="nav">
             {/* {mainListItems} */}
             <Divider sx={{ my: 1 }} />
@@ -271,7 +283,7 @@ function UpdateAwsAccountContent() {
                         variant="outlined"
                         style={{ width: "95%" }}
                         disabled
-                        value={"Redinasys"}
+                        value={"136102"}
                       />
                       <TextField
                         id="outlined-basic"

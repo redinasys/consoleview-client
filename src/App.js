@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { Box } from "@mui/material";
 
 import Landing from "./components/Landing";
@@ -17,21 +17,23 @@ import UpdateAwsAccountScreen from "./screens/UpdateAwsAccountScreen";
 const App = () => {
   return (
     <Box>
-      <Routes>
+        <Routes>
+          <Route element={<PrivateRoutes />}>
+            {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+            <Route path="/instances" element={<InstanceScreen />} />
+            <Route path="/" element={<Landing />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
 
-        <Route element={<PrivateRoutes />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/instances" element={<InstanceScreen />} />
 
-          <Route path="/aws-accounts" element={<AwsAccountsScreen />} />
-          <Route path="/add-aws-account" element={<AddAwsAccountScreen />} />
-          <Route path="/aws-accounts/:id" element={<UpdateAwsAccountScreen />} />
-        </Route>
-
-        <Route path="/" element={<Landing />} exact />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
-      </Routes>
+            <Route path="/aws-accounts" element={<AwsAccountsScreen />} />
+            <Route path="/add-aws-account" element={<AddAwsAccountScreen />} />
+            <Route
+              path="/aws-accounts/:id"
+              element={<UpdateAwsAccountScreen />}
+            />
+          </Route>
+        </Routes>
     </Box>
   );
 };

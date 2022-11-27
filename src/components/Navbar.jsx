@@ -7,15 +7,26 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#ba5937',
+    }
+  },
+});
 
 const Navbar = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <AppBar position="relative">
+      <AppBar style={{
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+      }}>
         <Toolbar>
-          <AccountBalanceIcon sx={{ mr: 2 }} />
+          {/* <AccountBalanceIcon sx={{ mr: 2 }} /> */}
           <Typography variant="h6" color="inherit" noWrap>
             <Link style={{ color: "white", textDecoration: "none" }} to="/">ConsoleView</Link>
           </Typography>

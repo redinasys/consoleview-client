@@ -21,6 +21,7 @@ import Copyright from "../components/Dashboard/Copyright";
 import { Button, Container, Paper, TextField } from "@mui/material";
 import { useState } from "react";
 import { AxiosInstance } from "../utils/AxiosInstance";
+import Logo from "../assets/logo.png";
 
 const drawerWidth = 240;
 
@@ -68,7 +69,13 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
-const mdTheme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#ba5937',
+    }
+  },
+});
 
 function AddAwsAccountContent() {
   const [open, setOpen] = React.useState(true);
@@ -108,7 +115,7 @@ function AddAwsAccountContent() {
   };
 
   return (
-    <ThemeProvider theme={mdTheme}>
+    <ThemeProvider theme={theme}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <AppBar position="absolute" open={open}>
@@ -138,11 +145,13 @@ function AddAwsAccountContent() {
             >
               Add Account
             </Typography>
-            <IconButton color="inherit">
+            {/*
+<IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
+*/}
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -154,11 +163,14 @@ function AddAwsAccountContent() {
               px: [1],
             }}
           >
-            <IconButton onClick={toggleDrawer}>
-              <ChevronLeftIcon />
-            </IconButton>
+            {/* {/* <IconButton onClick={toggleDrawer}>
+      <ChevronLeftIcon />
+</IconButton> */} 
           </Toolbar>
-          <Divider />
+          <Container>
+            <img src={Logo} alt="logo" style={{ width: '100%', marginBottom: "-52px", marginTop: "-50px" }} />
+          </Container>
+          {/* <Divider /> */}
           <List component="nav">
             {/* {mainListItems} */}
             <Divider sx={{ my: 1 }} />
@@ -249,7 +261,7 @@ function AddAwsAccountContent() {
                         variant="outlined"
                         style={{ width: "95%" }}
                         disabled
-                        value={"Redinasys"}
+                        value={"136102"}
                       />
                       <TextField
                         id="outlined-basic"
@@ -282,7 +294,7 @@ function AddAwsAccountContent() {
                       5. Select require external ID and paste in the external ID
                       (from connector details) <br />
                       6. Select the following policies: Find the policy titled
-                      "AmazonEC2ReadOnlyAccess" and select the checkboxes next
+                      "ReadOnlyAccess" and select the checkboxes next
                       to it. <br />
                       7. Click next: Tags <br />
                       8. Click next: Review <br />

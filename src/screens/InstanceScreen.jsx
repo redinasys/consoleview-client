@@ -19,6 +19,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { secondaryListItems } from '../components/Dashboard/ListItems';
 import Instances from '../components/Dashboard/Instances';
 import Copyright from '../components/Dashboard/Copyright';
+import Logo from '../assets/logo.png';
 
 const drawerWidth = 240;
 
@@ -66,7 +67,13 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-const mdTheme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#ba5937',
+    }
+  },
+});
 
 function InstanceContent() {
   const [open, setOpen] = React.useState(true);
@@ -75,7 +82,7 @@ function InstanceContent() {
   };
 
   return (
-    <ThemeProvider theme={mdTheme}>
+    <ThemeProvider theme={theme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <AppBar position="absolute" open={open}>
@@ -105,11 +112,13 @@ function InstanceContent() {
             >
               EC2 Instances
             </Typography>
-            <IconButton color="inherit">
+            {/*
+<IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
+*/}
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -121,11 +130,14 @@ function InstanceContent() {
               px: [1],
             }}
           >
-            <IconButton onClick={toggleDrawer}>
-              <ChevronLeftIcon />
-            </IconButton>
+            {/* <IconButton onClick={toggleDrawer}>
+      <ChevronLeftIcon />
+</IconButton> */}
           </Toolbar>
-          <Divider />
+          <Container>
+            <img src={Logo} alt="logo" style={{ width: '100%', marginBottom: "-52px", marginTop: "-50px" }} />
+          </Container>
+          {/* <Divider /> */}
           <List component="nav">
             {/* {mainListItems} */}
             <Divider sx={{ my: 1 }} />

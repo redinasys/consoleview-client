@@ -20,6 +20,7 @@ import { secondaryListItems } from '../components/Dashboard/ListItems';
 import AwsAccounts from '../components/Dashboard/AwsAccounts';
 import Copyright from '../components/Dashboard/Copyright';
 import Title from '../components/Dashboard/Title';
+import Logo from '../assets/logo.png';
 
 const drawerWidth = 240;
 
@@ -67,7 +68,13 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-const mdTheme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#ba5937',
+    }
+  },
+});
 
 function AwsAccountsContent() {
   const [open, setOpen] = React.useState(true);
@@ -76,7 +83,7 @@ function AwsAccountsContent() {
   };
 
   return (
-    <ThemeProvider theme={mdTheme}>
+    <ThemeProvider theme={theme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <AppBar position="absolute" open={open}>
@@ -106,11 +113,13 @@ function AwsAccountsContent() {
             >
               AWS Accounts
             </Typography>
-            <IconButton color="inherit">
+            {/*
+<IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
+*/}
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -122,11 +131,14 @@ function AwsAccountsContent() {
               px: [1],
             }}
           >
-            <IconButton onClick={toggleDrawer}>
-              <ChevronLeftIcon />
-            </IconButton>
+            {/* <IconButton onClick={toggleDrawer}>
+      <ChevronLeftIcon />
+</IconButton> */}
           </Toolbar>
-          <Divider />
+          <Container>
+            <img src={Logo} alt="logo" style={{ width: '100%', marginBottom: "-52px", marginTop: "-50px" }} />
+          </Container>
+          {/* <Divider /> */}
           <List component="nav">
             {/* {mainListItems} */}
             <Divider sx={{ my: 1 }} />

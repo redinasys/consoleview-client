@@ -41,8 +41,8 @@ export const secondaryListItems = (
       </Link>
     </ListItemButton>
 
-    <ListSubheader component="div">Filter</ListSubheader>
-    <AwsAccountNames />
+    {/* <ListSubheader component="div">Filter</ListSubheader>
+    <AwsAccountNames /> */}
 
     <ListSubheader component="div">Manage AWS Accounts</ListSubheader>
     <ListItemButton>
@@ -63,14 +63,14 @@ export const secondaryListItems = (
     </ListItemButton>
 
     <ListSubheader component="div">Settings</ListSubheader>
-    <ListItemButton>
+    {/* <ListItemButton>
       <ListItemIcon>
         <PersonIcon />
       </ListItemIcon>
       <Link to="/profile" style={{ textDecoration: "none", color: "inherit" }}>
         <ListItemText primary="Profile" />
       </Link>
-    </ListItemButton>
+    </ListItemButton> */}
     <ListItemButton>
       <ListItemIcon>
         <LogoutIcon />
@@ -79,12 +79,18 @@ export const secondaryListItems = (
         to="/signin"
         style={{ textDecoration: "none", color: "inherit" }}
         onClick={() => {
-          localStorage.clear();
           let navigate = useNavigate();
           navigate("/signin");
+          localStorage.clear();
         }}
       >
-        <ListItemText primary="Logout" />
+        <ListItemText primary="Logout" onClick={
+          () => {
+            let navigate = useNavigate();
+            navigate("/signin");
+            localStorage.clear();
+          }
+        } />
       </Link>
     </ListItemButton>
   </React.Fragment>
