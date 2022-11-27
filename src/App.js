@@ -17,23 +17,22 @@ import UpdateAwsAccountScreen from "./screens/UpdateAwsAccountScreen";
 const App = () => {
   return (
     <Box>
-        <Routes>
-          <Route element={<PrivateRoutes />}>
-            {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-            <Route path="/instances" element={<InstanceScreen />} />
-            <Route path="/" element={<Landing />} />
-            <Route path="/signin" element={<SignIn />} />
-            <Route path="/signup" element={<SignUp />} />
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route element={<PrivateRoutes />}>
+          {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+          <Route path="/instances" element={<InstanceScreen />} />
 
-
-            <Route path="/aws-accounts" element={<AwsAccountsScreen />} />
-            <Route path="/add-aws-account" element={<AddAwsAccountScreen />} />
-            <Route
-              path="/aws-accounts/:id"
-              element={<UpdateAwsAccountScreen />}
-            />
-          </Route>
-        </Routes>
+          <Route path="/aws-accounts" element={<AwsAccountsScreen />} />
+          <Route path="/add-aws-account" element={<AddAwsAccountScreen />} />
+          <Route
+            path="/aws-accounts/:id"
+            element={<UpdateAwsAccountScreen />}
+          />
+        </Route>
+      </Routes>
     </Box>
   );
 };
