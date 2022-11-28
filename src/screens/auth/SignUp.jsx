@@ -69,12 +69,11 @@ const SignUp = () => {
         if (err) {
           setErrors(err.message);
           console.log(errors);
-          localStorage.setItem("isUserConfirmed", data.userConfirmed);
         } else {
           console.log(data);
+          navigate("/signin");
         }
       });
-      navigate("/signin");
     } catch (error) {
       console.log(error);
       setErrors([error.response.data]);
