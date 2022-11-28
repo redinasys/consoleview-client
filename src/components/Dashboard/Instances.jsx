@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 import { FetchAwsAccounts } from "../../utils/FetchAwsAccounts";
 import { FetchInstances } from "../../utils/FetchInstances";
 import FullJson from "./FullJson";
-import { LinearProgress } from "@mui/material";
+import { LinearProgress, Typography } from "@mui/material";
 
 function preventDefault(event) {
   event.preventDefault();
@@ -40,7 +40,7 @@ export default function Instances() {
       <Title>EC2 Instances</Title>
       {isLoading ? (
         <LinearProgress />
-      ) : (
+      ) : instances.length !== 0 ? (
         <Table size="small">
           <TableHead>
             <TableRow>
@@ -82,6 +82,15 @@ export default function Instances() {
             ))}
           </TableBody>
         </Table>
+      ) : (
+        <Typography
+          variant="h6"
+          component="div"
+          gutterBottom
+          style={{ textAlign: "center" }}
+        >
+          No Instances Found
+        </Typography>
       )}
       {/* <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
         See more instances

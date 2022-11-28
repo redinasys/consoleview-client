@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -12,26 +12,28 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useRoutes } from "react-router-dom";
 
 import Navbar from "../../components/Navbar";
 import Logo from "../../assets/logo.png";
 
 import UserPool from "../../utils/UserPool";
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
-import { Container } from "@mui/material";
+import { Alert, Container } from "@mui/material";
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#ba5937',
-    }
+      main: "#ba5937",
+    },
   },
 });
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [errors, setErrors] = useState("");
 
   const navigate = useNavigate();
 
@@ -46,10 +48,14 @@ const SignIn = () => {
         Username: email,
         Password: password,
       });
+
       user.authenticateUser(authDetails, {
         onSuccess: (data) => {
           console.log("onSuccess:", data);
-          localStorage.setItem("access-token", data.getAccessToken().getJwtToken());
+          localStorage.setItem(
+            "access-token",
+            data.getAccessToken().getJwtToken()
+          );
           localStorage.setItem("name", data.idToken.payload.name);
           localStorage.setItem("email", data.idToken.payload.email);
           localStorage.setItem(
@@ -68,6 +74,7 @@ const SignIn = () => {
         },
         onFailure: (err) => {
           console.error("onFailure:", err);
+          setErrors(err.message);
         },
       });
     } catch (error) {
@@ -107,13 +114,29 @@ const SignIn = () => {
               alignItems: "center",
             }}
           >
-            <Container style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-              marginLeft: "-10px",
-            }}>
+            {localStorage.getItem("isUserConfirmed") ? (
+              <Container>
+                <Alert severity="success">
+                  Email successfully verified. Please singin to continue.
+                </Alert>
+              </Container>
+            ) : (
+              <Container>
+                <Alert severity="success">
+                  Verification link sent! Please verify your email and come back
+                  to sign in..
+                </Alert>
+              </Container>
+            )}
+            <Container
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                marginLeft: "-10px",
+              }}
+            >
               <img src={Logo} alt="logo" width="200" />
             </Container>
             <Typography component="h1" variant="h5">
@@ -153,6 +176,11 @@ const SignIn = () => {
                   setPassword(e.target.value);
                 }}
               />
+              {errors !== "" ? (
+                <Typography color="error" variant="body2">
+                  {errors}
+                </Typography>
+              ) : null}
               <Button
                 type="submit"
                 fullWidth
@@ -162,7 +190,7 @@ const SignIn = () => {
                 Sign In
               </Button>
 
-              <Link to="/signup" variant="body2" style={{color: "#ba5937"}}>
+              <Link to="/signup" variant="body2" style={{ color: "#ba5937" }}>
                 {"Don't have an account? Sign Up"}
               </Link>
             </Box>
